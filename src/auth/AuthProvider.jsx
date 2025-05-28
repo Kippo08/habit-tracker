@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { AuthContext } from "./AuthContext";
-import { useNavigate } from "react-router-dom";
 import {
   getCurrentUser,
   setCurrentUser,
@@ -11,7 +10,6 @@ import {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const storedUser = getCurrentUser();
@@ -25,7 +23,7 @@ export const AuthProvider = ({ children }) => {
     if (!userData || userData.password !== password) return false;
     setUser({ username });
     setCurrentUser(username);
-    window.location.replace("/"); // Pełne przeładowanie aplikacji
+    window.location.replace("/");
     return true;
   };
 
@@ -34,14 +32,14 @@ export const AuthProvider = ({ children }) => {
     setUserData(username, { password, habits: [], stats: [] });
     setUser({ username });
     setCurrentUser(username);
-    window.location.replace("/"); // Pełne przeładowanie aplikacji
+    window.location.replace("/");
     return true;
   };
 
   const logout = () => {
     setUser(null);
     removeCurrentUser();
-    window.location.replace("/auth"); // Pełne przeładowanie aplikacji
+    window.location.replace("/auth");
   };
 
   return (

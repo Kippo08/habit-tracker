@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./auth/AuthProvider";
-import { ThemeProvider } from "./utils/theme";
 import Dashboard from "./pages/Dashboard";
 import AddHabitPage from "./pages/AddHabitPage";
 import StatsPage from "./pages/StatsPage";
@@ -12,7 +11,6 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-        <ThemeProvider>
           <Routes>
             <Route path="/auth" element={<AuthPage />} />
             <Route
@@ -41,7 +39,6 @@ function App() {
             />
           </Routes>
           <Toaster richColors position="top-right" />
-        </ThemeProvider>
       </AuthProvider>
     </Router>
   );

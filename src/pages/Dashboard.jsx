@@ -5,15 +5,16 @@ import { getHabits, setHabits } from "@/utils/storage";
 import HabitItem from "../components/HabitItem";
 import dayjs from "dayjs";
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   const { user } = useAuth();
   const [habits, setHabitsState] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
-      const username = localStorage.getItem("habit-current-user"); // Pobranie username z localStorage
-      const userHabits = getHabits(username); // Pobranie nawyków
+      const userHabits = getHabits(user.username);
       setHabitsState(userHabits);
     }
   }, [user]);
@@ -39,22 +40,22 @@ export default function Dashboard() {
     setHabits(user.username, updatedHabits);
   };
 
-  const handleEditHabit = (habit) => {
-    navigate(`/edit/${habit.id}`);
-  };
-
   const handleDeleteHabit = (habitId) => {
     const updatedHabits = habits.filter((h) => h.id !== habitId);
     setHabitsState(updatedHabits);
     setHabits(user.username, updatedHabits);
   };
 
+  const handleEditHabit = (habit) => {
+    navigate(`/add?edit=${habit.id}`);
+  };
+
   return (
     <div>
       <Navbar />
-      <div className="container mx-auto p-4">
-        <h1 className="text-2xl font-bold mb-6">Twoje Nawyki</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="container mx-auto p-2 sm:p-4">
+        <h1 className="text-2xl font-bold mb-4 sm:mb-6 text-center sm:text-left">Twoje Nawyki</h1>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {habits.map((habit) => (
             <HabitItem
               key={habit.id}

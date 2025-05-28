@@ -16,29 +16,29 @@ export default function AuthPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <form onSubmit={handleSubmit} className="bg-white dark:bg-zinc-900 p-6 rounded-2xl shadow-xl w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center p-2 sm:p-4 bg-background">
+      <form onSubmit={handleSubmit} className="bg-card p-6 rounded-2xl shadow-xl w-full max-w-md border border-border">
         <h2 className="text-xl font-semibold mb-4 text-center">
           {isLogin ? "Logowanie" : "Rejestracja"}
         </h2>
         <input
           type="text"
           placeholder="Nazwa użytkownika"
-          className="w-full mb-3 p-2 rounded bg-zinc-100 dark:bg-zinc-800"
+          className="w-full mb-3 p-2 rounded bg-muted text-foreground"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <input
           type="password"
           placeholder="Hasło"
-          className="w-full mb-3 p-2 rounded bg-zinc-100 dark:bg-zinc-800"
+          className="w-full mb-3 p-2 rounded bg-muted text-foreground"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
+        {error && <p className="text-red-600 text-sm mb-2">{error}</p>}
         <Button type="submit" className="w-full">{isLogin ? "Zaloguj się" : "Zarejestruj się"}</Button>
         <p
-          className="text-sm text-center mt-4 cursor-pointer text-blue-500 hover:underline"
+          className="text-sm text-center mt-4 cursor-pointer text-primary hover:underline"
           onClick={() => {
             setIsLogin(!isLogin)
             setError("")

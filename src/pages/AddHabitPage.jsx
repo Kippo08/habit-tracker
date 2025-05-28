@@ -31,7 +31,7 @@ export default function AddHabitPage() {
 
 
   return (
-    <div className="max-w-md mx-auto mt-10 px-4">
+    <div className="max-w-md w-full mx-auto mt-8 px-2 sm:px-4">
       <Card>
         <CardContent className="pt-6">
           <h1 className="text-2xl font-bold mb-4 text-center">
